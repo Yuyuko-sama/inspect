@@ -30,7 +30,7 @@ module.exports = function Inspector(dispatch) {
 		console.log('玩家：' + name + ' 申请加入队伍/团队')
 	})
 	
-	dispatch.hook('S_USER_STATUS', 1, event => { 
+	dispatch.hook('S_USER_STATUS', 2, event => { 
 		if(event.target.equals(cid)) {
 			if(event.status == 1) {
 				inCombat = true

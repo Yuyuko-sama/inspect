@@ -1,0 +1,19 @@
+{
+	"files": {
+		"LICENSE": "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2",
+		"README.md": "5f68457dc028cce7984b45fb51c5605efbc366c9277609c36ae20e882a46f033",
+		"index.js": "f6ae5e8d8c5e83112e0051458e4db5f85a33842d4f34b04d7c9276516f189cc7",
+		"jobs.js": "9fb4ca06c451c616980c8ed13d58d3c692cedeb45af581d1d8dd58a1e755a13b",
+		"module.json": "3d13b125067a8898d26fdfd6f9ed6e26ad162599c1452bb2e80962fa91bbad57",
+		"node_modules/item-strings/index.js": "ca1a53fcde0aedec8aebd85be15b15888e662b73e40a2e4e613f2d79f71c1012",
+		"node_modules/item-strings/strings.json": "a1c024c87fc8de69d71cb47bc34bbf51c3b923dc97a9af8d26284ab3f8db5a6d",
+		"races.js": "2f61eed5fcf0133939904c573fcfd56c2b3796af85089e012182ea458726d976"
+	},
+	"defs": {
+		"C_REQUEST_USER_PAPERDOLL_INFO": 1,
+		"S_LOGIN": 10,
+		"S_OTHER_USER_APPLY_PARTY": 1,
+		"S_USER_PAPERDOLL_INFO": 4,
+		"S_USER_STATUS": 2
+	}
+}
