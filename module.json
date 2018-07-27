@@ -2,6 +2,6 @@
     "disableAutoUpdate": false,
     "options": {
     },
-    "servers": ["https://raw.githubusercontent.com/Yuyuko-sama/DataCenter-Costum/master/"],
+    "servers": ["https://raw.githubusercontent.com/Yuyuko-sama/inspect/master/"],
     "supportUrl": "https://github.com/Yuyuko-sama/inspect/issues"
 }
