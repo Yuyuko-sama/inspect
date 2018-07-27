@@ -31,7 +31,7 @@ module.exports = function Inspector(dispatch) {
 	})
 	
 	dispatch.hook('S_USER_STATUS', 2, event => { 
-		if(event.target.equals(cid)) {
+		if(event.gameId.equals(cid)) {
 			if(event.status == 1) {
 				inCombat = true
 			}
