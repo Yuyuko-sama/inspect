@@ -2,20 +2,19 @@
 
 const jobs = require('./jobs'),
 	races = require('./races'),
-	ItemStrings = require('item-strings'),
-	Command = require('command')
+	ItemStrings = require('item-strings')
 
-module.exports = function Inspector(dispatch) {
+module.exports = function Inspector(mod) {
 	let cid = null,
 		enabled = true,
 		inCombat = false
 		
-	dispatch.hook('S_LOGIN', 10, event => {
+	mod.hook('S_LOGIN', 10, event => {
 		cid = event.gameId
 		inCombat = false
 	})
 
-	dispatch.hook('S_OTHER_USER_APPLY_PARTY', 1, event => {
+	mod.hook('S_OTHER_USER_APPLY_PARTY', 1, event => {
 		if (!enabled) return
 		let name = event.name,
 			level = event.level,
@@ -24,13 +23,13 @@ module.exports = function Inspector(dispatch) {
 			race = event.race
 		if (!inCombat) {
 			//setTimeout( function inspect() {
-					dispatch.toServer('C_REQUEST_USER_PAPERDOLL_INFO', 1, { name: name })
+					mod.toServer('C_REQUEST_USER_PAPERDOLL_INFO', 1, { name: name })
 				//}, 2000)
 		}
 		console.log('玩家：' + name + ' 申请加入队伍/团队')
 	})
 	
-	dispatch.hook('S_USER_STATUS', 2, event => { 
+	mod.hook('S_USER_STATUS', 2, event => { 
 		if(event.gameId.equals(cid)) {
 			if(event.status == 1) {
 				inCombat = true
@@ -39,7 +38,7 @@ module.exports = function Inspector(dispatch) {
 		}
 	})
 	
-	dispatch.hook('S_USER_PAPERDOLL_INFO', 4, event => {
+	mod.hook('S_USER_PAPERDOLL_INFO', 4, event => {
 		let name = event.name,
 			level = event.level,
 			race = Math.floor((event.model - 100) / 200 % 50), // 0 Human, 1 High Elf, 2 Aman, 3 Castanic, 4 Popori/Elin, 5 Baraka
@@ -82,22 +81,22 @@ module.exports = function Inspector(dispatch) {
 					break;
 			}
 		}
-		command.message(' [玩家]:'+ name + ' (等級: ' + level +' - 職業: '+ getJob(job) + ' - ' + getGender(gender) + ' ' + getRace(race, gender) + ')')
-		command.message('	     ' + guild + ' - 裝等: ' + itemLevel + '(' + itemLevelInventory + ')')
-		command.message('	     ' + '武器: ' + conv(weapon) + ' +' + weaponenchant)
-		//command.message('            ' + '        ' + weaponcrystal1)
-		//command.message('            ' + '        ' + weaponcrystal2)
-		//command.message('            ' + '        ' + weaponcrystal3)
-		//command.message('            ' + '        ' + weaponcrystal4)
-		command.message('	     ' + '上衣: ' + conv(chest) + ' +' + chestenchant)
-		//command.message('            ' + '       ' + chestcrystal1)
-		//command.message('            ' + '       ' + chestcrystal2)
-		//command.message('            ' + '       ' + chestcrystal3)
-		//command.message('            ' + '       ' + chestcrystal4)
-		command.message('	     ' + '手套: ' + conv(gloves) + ' +' + glovesenchant)
-		command.message('	     ' + '鞋子: ' + conv(boots) + ' +' + bootsenchant)
-		//command.message('            ' + '內衣: ' + conv(innerwear))
-		//command.message('            ' + '頭飾: ' + conv(circlet))
+		mod.command.message(' [玩家]:'+ name + ' (等級: ' + level +' - 職業: '+ getJob(job) + ' - ' + getGender(gender) + ' ' + getRace(race, gender) + ')')
+		mod.command.message('	     ' + guild + ' - 裝等: ' + itemLevel + '(' + itemLevelInventory + ')')
+		mod.command.message('	     ' + '武器: ' + conv(weapon) + ' +' + weaponenchant)
+		//mod.command.message('            ' + '        ' + weaponcrystal1)
+		//mod.command.message('            ' + '        ' + weaponcrystal2)
+		//mod.command.message('            ' + '        ' + weaponcrystal3)
+		//mod.command.message('            ' + '        ' + weaponcrystal4)
+		mod.command.message('	     ' + '上衣: ' + conv(chest) + ' +' + chestenchant)
+		//mod.command.message('            ' + '       ' + chestcrystal1)
+		//mod.command.message('            ' + '       ' + chestcrystal2)
+		//mod.command.message('            ' + '       ' + chestcrystal3)
+		//mod.command.message('            ' + '       ' + chestcrystal4)
+		mod.command.message('	     ' + '手套: ' + conv(gloves) + ' +' + glovesenchant)
+		mod.command.message('	     ' + '鞋子: ' + conv(boots) + ' +' + bootsenchant)
+		//mod.command.message('            ' + '內衣: ' + conv(innerwear))
+		//mod.command.message('            ' + '頭飾: ' + conv(circlet))
 	})
 	
 	// ######################## //
@@ -136,11 +135,10 @@ module.exports = function Inspector(dispatch) {
 	// ################# //
 	// ### Chat Hook ### //
 	// ################# //
-	
-	const command = Command(dispatch)
-	command.add('inspect', () => {
+
+	mod.command.add('inspect', () => {
 		enabled = !enabled
-		command.message('[Inspector] ' + (enabled ? '<font color="#56B4E9">enabled</font>' : '<font color="#E69F00">disabled</font>'))
+		mod.command.message('[Inspector] ' + (enabled ? '<font color="#56B4E9">enabled</font>' : '<font color="#E69F00">disabled</font>'))
 		console.log('[Inspector] ' + (enabled ? 'enabled' : 'disabled'))
 	})
 }
