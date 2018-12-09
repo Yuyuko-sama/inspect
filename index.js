@@ -1,4 +1,3 @@
-'use strict'
 
 const jobs = require('./jobs'),
 	races = require('./races'),
@@ -30,7 +29,7 @@ module.exports = function Inspector(mod) {
 	})
 	
 	mod.hook('S_USER_STATUS', 2, event => { 
-		if(event.gameId.equals(cid)) {
+		if(event.gameId == (cid)) {
 			if(event.status == 1) {
 				inCombat = true
 			}
