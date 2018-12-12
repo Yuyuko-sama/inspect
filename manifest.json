@@ -1,11 +1,11 @@
 {
 	"files": {
 		"README.md": "325213dd2c086d3e9fc3c7e2f7e6b3813a91e49c70277842277d79d050d8b2af",
-		"index.js": "0c4b2f36b1457736226254a19ce61bb9c66bc06dfbadfbd7f4bf230658ff3d64",
+		"index.js": "5dbd1fb223dbee81edeae5f7034b6a4de3d0fa119c95a398f3f317df9d719b01",
 		"jobs.js": "9fb4ca06c451c616980c8ed13d58d3c692cedeb45af581d1d8dd58a1e755a13b",
 		"module.json": "8ce0616beffaa92da0916e93e023ae7cbf246f467c889103332c5bca52995e98",
 		"node_modules/item-strings/index.js": "ca1a53fcde0aedec8aebd85be15b15888e662b73e40a2e4e613f2d79f71c1012",
-		"node_modules/item-strings/strings.json": "a1c024c87fc8de69d71cb47bc34bbf51c3b923dc97a9af8d26284ab3f8db5a6d",
+		"node_modules/item-strings/strings.json": "91ec4d08a719ea2d16d9dc05724d38131d44491f2f146417526cca9c19d4e2e6",
 		"races.js": "2f61eed5fcf0133939904c573fcfd56c2b3796af85089e012182ea458726d976"
 	},
 	"defs": {
