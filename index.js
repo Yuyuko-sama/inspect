@@ -8,7 +8,7 @@ module.exports = function Inspector(mod) {
 		enabled = true,
 		inCombat = false
 		
-	mod.hook('S_LOGIN', 10, event => {
+	mod.hook('S_LOGIN', mod.majorPatchVersion < 77 ? 11 : 12, event => {
 		cid = event.gameId
 		inCombat = false
 	})
@@ -28,7 +28,7 @@ module.exports = function Inspector(mod) {
 		console.log('玩家：' + name + ' 申请加入队伍/团队')
 	})
 	
-	mod.hook('S_USER_STATUS', 2, event => { 
+	mod.hook('S_USER_STATUS', 3, event => { 
 		if(event.gameId == (cid)) {
 			if(event.status == 1) {
 				inCombat = true
@@ -37,17 +37,17 @@ module.exports = function Inspector(mod) {
 		}
 	})
 	
-	mod.hook('S_USER_PAPERDOLL_INFO', 4, event => {
+	mod.hook('S_USER_PAPERDOLL_INFO', 6, event => {
 		let name = event.name,
 			level = event.level,
-			race = Math.floor((event.model - 100) / 200 % 50), // 0 Human, 1 High Elf, 2 Aman, 3 Castanic, 4 Popori/Elin, 5 Baraka
-			gender = Math.floor(event.model / 100 % 2) + 1, // 1 female, 2 male
-			job = event.model % 100 - 1, // 0 Warrior, 1 Lancer, [...], 12 Valkyrie
+			race = Math.floor((event.templateId - 100) / 200 % 50), // 0 Human, 1 High Elf, 2 Aman, 3 Castanic, 4 Popori/Elin, 5 Baraka
+			gender = Math.floor(event.templateId / 100 % 2) + 1, // 1 female, 2 male
+			job = event.templateId % 100 - 1, // 0 Warrior, 1 Lancer, [...], 12 Valkyrie
 			weapon = event.weapon,
-			chest = event.chest,
-			gloves = event.gloves,
-			boots = event.boots,
-			innerwear = event.innerwear,
+			chest = event.body,
+			gloves = event.hand,
+			boots = event.feet,
+			innerwear = event.underwear,
 			circlet = event.head,
 			itemLevel = event.itemLevel,
 			itemLevelInventory = event.itemLevelInventory,
