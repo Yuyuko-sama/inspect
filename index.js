@@ -8,7 +8,7 @@ module.exports = function Inspector(mod) {
 		enabled = true,
 		inCombat = false
 		
-	mod.hook('S_LOGIN', mod.majorPatchVersion < 77 ? 11 : 12, event => {
+	mod.hook('S_LOGIN', 12, event => {
 		cid = event.gameId
 		inCombat = false
 	})
